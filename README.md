@@ -8,7 +8,7 @@ the `urls` attribute.
 
 [![NPM](https://nodei.co/npm/normalice.png)](https://nodei.co/npm/normalice/)
 
-[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) 
+[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://img.shields.io/travis/DamonOehlman/normalice.svg?branch=master)](https://travis-ci.org/DamonOehlman/normalice) 
 
 ## Example Usage
 
@@ -17,12 +17,6 @@ var normalice = require('normalice');
 
 console.log(normalice('stun.l.google.com:19302'));
 // --> { urls: [ 'stun: stun.l.google.com:19302' ], url: 'stun:stun.l.google.com:19302' }
-
-console.log(normalice('stun.l.google.com:19302', { output: ['urls'] }));
-// --> { urls: [ 'stun: stun.l.google.com:19302' ] }
-
-console.log(normalice('stun.l.google.com:19302', { output: ['url'] }));
-// --> { url: 'stun: stun.l.google.com:19302' }
 
 ```
 
