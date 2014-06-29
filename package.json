@@ -1,0 +1,26 @@
+{
+  "name": "normalice",
+  "version": "0.0.0",
+  "description": "Normalize an ice server (stun,turn) configuration object or string into a consistent format usable by browsers",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/all.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/normalice.git"
+  },
+  "keywords": [
+    "ice",
+    "stun",
+    "turn",
+    "parser",
+    "webrtc"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/normalice/issues"
+  },
+  "homepage": "https://github.com/DamonOehlman/normalice"
+}
