@@ -14,9 +14,9 @@
 
 module.exports = function(input, opts) {
   // handle string input
-  if (typeof input == 'string' || (input instanceof of String)) {
+  if (typeof input == 'string' || (input instanceof String)) {
     input = {
-      url: input;
+      url: input
     };
   }
 };
