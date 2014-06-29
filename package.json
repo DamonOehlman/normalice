@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/DamonOehlman/normalice/issues"
   },
-  "homepage": "https://github.com/DamonOehlman/normalice"
+  "homepage": "https://github.com/DamonOehlman/normalice",
+  "devDependencies": {
+    "tape": "^2.13.3"
+  }
 }
