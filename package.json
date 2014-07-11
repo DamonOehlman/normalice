@@ -1,6 +1,6 @@
 {
   "name": "normalice",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Normalize an ice server (stun,turn) configuration object or string into a consistent format usable by browsers",
   "main": "index.js",
   "scripts": {
