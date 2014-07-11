@@ -50,3 +50,15 @@ function runTests(servers) {
   });
 }
 
+test('normalizing an already normalized turn url object', function (t) {
+  var serverObjs = require('./data/servers-url');
+  var server;
+
+  t.plan(5);
+  t.ok(server = normalice(serverObjs.turn[4]));
+  t.equal(server.url, 'turn:example.org?transport=tcp');
+  t.deepEqual(server.urls, ['turn:example.org?transport=tcp']);
+  t.equal(server.username, 'tmp');
+  t.equal(server.credential, 'test');
+});
+
