@@ -41,6 +41,8 @@ module.exports = function(input) {
   url = url.slice(5);
   parts = url.split('@');
 
+  output.username = input.username;
+  output.credential = input.credential;
   // if we have an authentication part, then set the credentials
   if (parts.length > 1) {
     url = parts[1];
