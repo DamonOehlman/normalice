@@ -62,3 +62,14 @@ test('normalizing an already normalized turn url object', function (t) {
   t.equal(server.credential, 'test');
 });
 
+test('normalizing an already normalized turn url object (with port)', function (t) {
+  var url = require('./data/servers-url').turn[5];
+  var server;
+
+  t.plan(5);
+  t.ok(server = normalice(url));
+  t.equal(server.url, 'turn:server1.example.org:443?transport=tcp');
+  t.deepEqual(server.urls, ['turn:server1.example.org:443?transport=tcp']);
+  t.equal(server.username, 'tmp');
+  t.equal(server.credential, 'test');
+});
