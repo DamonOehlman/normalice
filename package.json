@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/DamonOehlman/normalice",
   "devDependencies": {
-    "tape": "^2.13.3"
+    "tape": "^5.0.1"
   }
 }
