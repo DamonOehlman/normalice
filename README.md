@@ -1,23 +1,21 @@
 # normalice
 
-Normalize an ice server configuration object (or plain old string) into a format
-that is usable in all browsers supporting WebRTC.  Primarily this module is designed
-to help with the transition of the `url` attribute of the configuration object to
-the `urls` attribute.
-
+This small package is designed to assist with taking either a plain text string
+or an object which has been provided in the format of `{ url: string }` and
+generating normalized output that is suitable for supplying as the `iceServers`
+configuration parameter for an [`RTCPeerConnection`](https://www.w3.org/TR/webrtc/#rtcconfiguration-dictionary).
 
 [![NPM](https://nodei.co/npm/normalice.png)](https://nodei.co/npm/normalice/)
 
-[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://img.shields.io/travis/DamonOehlman/normalice.svg?branch=master)](https://travis-ci.org/DamonOehlman/normalice) 
+[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://img.shields.io/travis/DamonOehlman/normalice.svg?branch=master)](https://travis-ci.org/DamonOehlman/normalice)
 
 ## Example Usage
 
 ```js
-var normalice = require('normalice');
+const normalice = require('normalice');
 
 console.log(normalice('stun.l.google.com:19302'));
-// --> { urls: [ 'stun: stun.l.google.com:19302' ], url: 'stun:stun.l.google.com:19302' }
-
+// --> { urls: [ 'stun: stun.l.google.com:19302' ] }
 ```
 
 ## License(s)
