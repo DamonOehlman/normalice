@@ -1,60 +1,41 @@
-/**
-  # normalice
+module.exports = function (input) {
+  // if we have been passed an input object which has a url defined, then
+  // destructure that input object and create a default urls array with the
+  // original url as the only member of that array. If the original object
+  // has a "urls" property in addition to this "url" property, then the
+  // original "urls" property will take precedence and be preserved
+  if (input && input.url) {
+    const { url, ...props } = input;
 
-  Normalize an ice server configuration object (or plain old string) into a format
-  that is usable in all browsers supporting WebRTC.  Primarily this module is designed
-  to help with the transition of the `url` attribute of the configuration object to
-  the `urls` attribute.
-
-  ## Example Usage
-
-  <<< examples/simple.js
-
-**/
-
-var protocols = [
-  'stun:',
-  'turn:'
-];
-
-module.exports = function(input) {
-  var url = (input || {}).url || input;
-  var protocol;
-  var parts;
-  var output = {};
-
-  // if we don't have a string url, then allow the input to passthrough
-  if (typeof url != 'string' && (! (url instanceof String))) {
-    return input;
+    return {
+      urls: [url],
+      ...props,
+    };
   }
 
-  // trim the url string, and convert to an array
-  url = url.trim();
-
-  // if the protocol is not known, then passthrough
-  protocol = protocols[protocols.indexOf(url.slice(0, 5))];
-  if (! protocol) {
-    return input;
+  // if we have gotten this far we assume we are dealing with string input
+  // and if not, throw an error
+  if (typeof input !== 'string' && !(input instanceof String)) {
+    throw new Error(`Unable to parse input "${input}" with normalice`);
   }
 
-  // now let's attack the remaining url parts
-  url = url.slice(5);
-  parts = url.split('@');
+  // split the url into component parts
+  const [protocol, ...urlComponents] = input.trim().split(':');
 
-  output.username = input.username;
-  output.credential = input.credential;
-  // if we have an authentication part, then set the credentials
-  if (parts.length > 1) {
-    url = parts[1];
-    parts = parts[0].split(':');
-
-    // add the output credential and username
-    output.username = parts[0];
-    output.credential = (input || {}).credential || parts[1] || '';
+  switch (protocol.toLowerCase()) {
+    case 'turn':
+      return formatTurnUrl(...urlComponents);
+    case 'stun':
+      return { urls: [`stun:${urlComponents.join(':')}`] };
+    default:
+      throw new Error(`Unable to parse input "${input}" with normalice, unknown protocol: ${protocol}`);
   }
-
-  output.url = protocol + url;
-  output.urls = [ output.url ];
-
-  return output;
 };
+
+function formatTurnUrl(username, credential, host, port) {
+  return {
+    urls: port ? [`turn:${host}:${port}`] : [`turn:${host}`],
+    username,
+    credential,
+  };
+}
